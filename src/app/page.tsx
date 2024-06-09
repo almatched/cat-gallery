@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic";
@@ -21,7 +22,13 @@ async function Images() {
 
 export default async function HomePage() {
   return (
-  <main className="">
-    <Images />
-  </main>);
+    <main className="">
+      <SignedOut>
+        <div className="text-center text-xl w-full h-full">Sign in to view your images</div>
+      </SignedOut>
+      <SignedIn>
+        <Images />
+      </SignedIn>
+    </main>
+  );
 }
