@@ -12,7 +12,9 @@
 - [x] "taint" (server-only)
 - [x] Use Next/Image component
 - [x] Error management (w/ Sentry)
-- [ ] Routing/image page (parallel route)
+- [x] Routing/image page (parallel route)
+- [x] Customize upload button
+- [ ] Add toast for notification (Shadui)
 - [ ] Delte button (w/ Server Actions)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)
