@@ -3,11 +3,11 @@ import "@uploadthing/react/styles.css";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ClerkProvider } from "@clerk/nextjs";
+import { GeistSans } from "geist/font/sans";
 
 import { ourFileRouter } from "~/app/api/uploadthing/core";
 import { TopNav } from "./_components/topnav";
-
-import { GeistSans } from "geist/font/sans";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata = {
   title: "Folco's Cat Gallery",
@@ -26,13 +26,14 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        <body>
+        <body className="dark">
           <div className="grid h-screen grid-rows-[auto,1fr]">
             <TopNav />
             <main className="overflow-y-scroll">{children}</main>
+            {modal}
           </div>
-          {modal}
           <div id="modal-root" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

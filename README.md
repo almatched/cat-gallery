@@ -15,6 +15,7 @@
 - [x] Routing/image page (parallel route)
 - [x] Customize upload button
 - [ ] Add toast for notification (Shadui)
+- [ ] Fix ids on sonner
 - [ ] Delte button (w/ Server Actions)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)
