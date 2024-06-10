@@ -16,9 +16,14 @@
 - [x] Customize upload button
 - [x] Add toast for image upload notification (Shadui)
 - [x] Analytics (posthog)
-- [ ] Delete button (w/ Server Actions)
-- [ ] Ratelimiting (upstash)
+- [x] Delete button (w/ Server Actions)
+- [x] Ratelimiting (upstash)
+- [x] Restrict uploads to specific users
+- [ ] Reset all env keys and provide different keys for dev and for prod
 - [ ] Fix ids on sonner
 - [ ] Check if shadui modal is better than current one
-- [ ] Reset all env keys and provide different keys for dev and for prod
 - [ ] Handle runtime errors, like "image not found"
+- [ ] Fix the page layout for images of different resolutions
+- [ ] "Selecting" images on the gallery page (Zustand recommended by Theo)
+- [ ] "infinite scroll", lazy loading
+- [ ] Folders/albums
