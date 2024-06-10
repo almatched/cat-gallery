@@ -24,7 +24,7 @@ async function Images() {
 
 export default async function HomePage() {
   return (
-    <main>
+    <div>
       <SignedOut>
         <div className="h-full w-full text-center text-xl">
           Sign in to view your images
@@ -33,6 +33,6 @@ export default async function HomePage() {
       <SignedIn>
         <Images />
       </SignedIn>
-    </main>
+    </div>
   );
 }
