@@ -20,3 +20,5 @@
 - [ ] Ratelimiting (upstash)
 - [ ] Fix ids on sonner
 - [ ] Check if shadui modal is better than current one
+- [ ] Reset all env keys and provide different keys for dev and for prod
+- [ ] Handle runtime errors, like "image not found"
