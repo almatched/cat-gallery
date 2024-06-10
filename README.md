@@ -13,10 +13,10 @@
 - [x] Use Next/Image component
 - [x] Error management (w/ Sentry)
 - [x] Routing/image page (parallel route)
-- [ ] Fix error, when clicking on an image. It should display modal, but throws an error
 - [x] Customize upload button
 - [x] Add toast for image upload notification (Shadui)
-- [ ] Fix ids on sonner
-- [ ] Delte button (w/ Server Actions)
-- [ ] Analytics (posthog)
+- [x] Analytics (posthog)
+- [ ] Delete button (w/ Server Actions)
 - [ ] Ratelimiting (upstash)
+- [ ] Fix ids on sonner
+- [ ] Check if shadui modal is better than current one
