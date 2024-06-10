@@ -90,6 +90,11 @@ export function UploadButton() {
         },
       );
     },
+    onUploadError(error) {
+      posthog.capture("upload_error", { error });
+      toast.dismiss("upload-beig");
+      toast.error("Upload failed");
+    },
     onClientUploadComplete() {
       toast.dismiss("upload-begin");
       toast("Upload complete!");
