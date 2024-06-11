@@ -21,10 +21,9 @@
 - [x] Restrict uploads to specific users
 - [ ] Reset all env keys and provide different keys for dev and for prod
 - [ ] Delete images from uloadthing, not only from postgres
-- [ ] Fix ids on sonner
-- [ ] Check if shadui modal is better than current one
-- [ ] Handle runtime errors, like "image not found"
 - [ ] Fix the page layout for images of different resolutions
+- [ ] Fix ids on sonner
+- [ ] Handle runtime errors, like "image not found"
 - [ ] "Selecting" images on the gallery page (Zustand recommended by Theo)
 - [ ] "infinite scroll", lazy loading
 - [ ] Folders/albums
