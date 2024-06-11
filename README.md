@@ -18,11 +18,13 @@
 - [x] Analytics (posthog)
 - [x] Delete button (w/ Server Actions)
 - [x] Ratelimiting (upstash)
+-----------------------------------------------------
 - [x] Restrict uploads to specific users
-- [ ] Delete images from uloadthing, not only from postgres
+- [x] Delete images from uloadthing, not only from postgres
+- [x] Manage who can read, upload and delete images via clerk (permission-flags)
+- [x] Handle runtime errors, like "image not found", with error boundary
 - [ ] Fix the page layout for images of different resolutions
 - [ ] Fix ids on sonner
-- [ ] Handle runtime errors, like "image not found"
 - [ ] "Selecting" images on the gallery page (Zustand recommended by Theo)
 - [ ] "infinite scroll", lazy loading
-- [ ] Folders/albums
+- [ ] Customize error boundary to look nice
