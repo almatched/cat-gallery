@@ -19,7 +19,6 @@
 - [x] Delete button (w/ Server Actions)
 - [x] Ratelimiting (upstash)
 - [x] Restrict uploads to specific users
-- [ ] Reset all env keys and provide different keys for dev and for prod
 - [ ] Delete images from uloadthing, not only from postgres
 - [ ] Fix the page layout for images of different resolutions
 - [ ] Fix ids on sonner

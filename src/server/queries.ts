@@ -1,10 +1,12 @@
 import "server-only";
+
 import { auth } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
 import { images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
+import { utapi } from "./uploadthing";
 
 export async function getMyImages() {
   const user = auth();
@@ -35,7 +37,7 @@ export async function getImage(id: number) {
   return image;
 }
 
-export async function deleteImage(id: number) {
+export async function deleteImage(id: number, url: string) {
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -43,6 +45,13 @@ export async function deleteImage(id: number) {
   await db
     .delete(images)
     .where(and(eq(images.id, id), eq(images.userId, user.userId)));
+
+  const urlArray = url.split("/");
+  const deleteKey = urlArray[urlArray.length-1];
+
+  if (typeof deleteKey === "string") {
+    await utapi.deleteFiles(deleteKey);
+  }
 
   analyticsServerClient.capture({
     distinctId: user.userId,

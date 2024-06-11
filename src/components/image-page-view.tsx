@@ -34,7 +34,7 @@ export default async function ImagePageView({ id }: { id: string }) {
             action={async () => {
               "use server";
 
-              await deleteImage(idAsNumber);
+              await deleteImage(idAsNumber, image.url);
             }}
           >
             <Button type="submit" variant="destructive">
