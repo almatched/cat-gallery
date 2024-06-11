@@ -20,6 +20,7 @@
 - [x] Ratelimiting (upstash)
 - [x] Restrict uploads to specific users
 - [ ] Reset all env keys and provide different keys for dev and for prod
+- [ ] Delete images from uloadthing, not only from postgres
 - [ ] Fix ids on sonner
 - [ ] Check if shadui modal is better than current one
 - [ ] Handle runtime errors, like "image not found"
