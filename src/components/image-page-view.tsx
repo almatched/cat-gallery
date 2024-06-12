@@ -13,7 +13,7 @@ export default async function ImagePageView({ id }: { id: string }) {
   return (
     <div className="flex h-full w-full min-w-0 text-white">
       <div className="flex h-full w-full items-center justify-center">
-        <img src={image.url} className="h-full w-full object-contain" />
+        <img alt={image.name} src={image.url} className="h-full w-full object-contain object-center" />
       </div>
 
       <div className="flex w-48 flex-shrink-0 flex-col border-l">

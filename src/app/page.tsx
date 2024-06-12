@@ -10,7 +10,7 @@ async function Images() {
 
   return (
     <div className="flex justify-center">
-        <div className="grid grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
         {images.map((image) => (
           <div className="aspect-square overflow-hidden rounded-md">
             <Link href={`/img/${image.id}`} key={image.id}>

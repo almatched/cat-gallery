@@ -24,7 +24,8 @@
 - [x] Manage who can read, upload and delete images via clerk (permission-flags)
 - [x] Handle runtime errors, like "image not found", with error boundary
 - [x] Fix the page layout for images of different aspect-ratios
+- [x] "infinite scroll", lazy loading
 - [ ] Fix ids on sonner
 - [ ] "Selecting" images on the gallery page (Zustand recommended by Theo)
-- [ ] "infinite scroll", lazy loading
 - [ ] Customize error boundary to look nice
+- [ ] Optimize images as much as possible
