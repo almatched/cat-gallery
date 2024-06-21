@@ -1,8 +1,3 @@
-export type ImageMetaData = {
-    id: number;
-    name: string;
-    url: string;
-    userId: string;
-    createdAt: Date;
-    updatedAt: Date | null;
-}
+import { images } from "~/server/db/schema";
+
+export type ImageMetaData = typeof images.$inferSelect;
