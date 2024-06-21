@@ -2,21 +2,33 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { getNewImages } from "~/app/_components/get-new-images";
+import { useInView } from "react-intersection-observer";
+import { ImageMetaData } from "~/lib/types";
 
-export function Images({ images, numberOfImagesToFetch }) {
-  const [myImages, setMyImages] = useState(images);
+const initialImages: ImageMetaData[] = [];
+const NUMBER_OF_IMAGES_TO_FETCH = 15;
+
+export function Images() {
+  const [myImages, setMyImages] = useState<ImageMetaData[]>(initialImages);
   const [isPending, startTransition] = useTransition();
-  const [offset, setOffset] = useState(numberOfImagesToFetch);
+  const [offset, setOffset] = useState(0);
+  const { ref, inView } = useInView();
 
-  function handleClick() {
+  function loadMoreImages() {
     startTransition(async () => {
-      const newImages = await getNewImages(numberOfImagesToFetch, offset);
+      const newImages = await getNewImages(NUMBER_OF_IMAGES_TO_FETCH, offset);
       setMyImages([...myImages, ...newImages]);
-      setOffset(offset + numberOfImagesToFetch);
+      setOffset(offset + NUMBER_OF_IMAGES_TO_FETCH);
     });
   }
+
+  useEffect(() => {
+    if (inView) {
+      loadMoreImages();
+    }
+  }, [inView]);
 
   return (
     <div>
@@ -40,9 +52,7 @@ export function Images({ images, numberOfImagesToFetch }) {
           ))}
         </div>
       </div>
-      <button type="button" className="bg-red-500 p-5" onClick={handleClick}>
-        more
-      </button>
+      <div ref={ref} />
     </div>
   );
 }
