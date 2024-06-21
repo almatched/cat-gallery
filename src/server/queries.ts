@@ -3,12 +3,12 @@ import "server-only";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
 import { images } from "./db/schema";
-import { and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
 import { utapi } from "./uploadthing";
 
-export async function getMyImages() {
+export async function getMyImages(limit: number, offset: number) {
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -21,6 +21,8 @@ export async function getMyImages() {
 
   const images = await db.query.images.findMany({
     orderBy: (model, { desc }) => desc(model.id),
+    limit: limit,
+    offset: offset,
   });
 
   return images;

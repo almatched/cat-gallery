@@ -5,8 +5,10 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
+const NUMBER_OF_IMAGES_TO_FETCH = 15
+
 async function Images() {
-  const images = await getMyImages();
+  const images = await getMyImages(NUMBER_OF_IMAGES_TO_FETCH, 0);
 
   return (
     <div className="flex justify-center">
