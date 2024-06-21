@@ -1,37 +1,13 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { getMyImages } from "~/server/queries";
-import Image from "next/image";
-import Link from "next/link";
+import { Images } from "~/app/_components/images";
+import { getNewImages } from "~/app/_components/get-new-images";
 
 export const dynamic = "force-dynamic";
 
-const NUMBER_OF_IMAGES_TO_FETCH = 15
+const NUMBER_OF_IMAGES_TO_FETCH = 5;
+const initialImages = await getNewImages(NUMBER_OF_IMAGES_TO_FETCH, 0);
 
-async function Images() {
-  const images = await getMyImages(NUMBER_OF_IMAGES_TO_FETCH, 0);
-
-  return (
-    <div className="flex justify-center">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
-        {images.map((image) => (
-          <div className="aspect-square overflow-hidden rounded-md">
-            <Link href={`/img/${image.id}`} key={image.id}>
-              <Image
-                src={image.url}
-                alt={image.name}
-                width={192}
-                height={192}
-                className="h-full w-full object-cover object-center"
-              />
-            </Link>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <div>
       <SignedOut>
@@ -40,7 +16,7 @@ export default async function HomePage() {
         </div>
       </SignedOut>
       <SignedIn>
-        <Images />
+        <Images images={initialImages} numberOfImagesToFetch={NUMBER_OF_IMAGES_TO_FETCH} />
       </SignedIn>
     </div>
   );
