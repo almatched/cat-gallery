@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useTransition } from "react";
-import { getNewImages } from "~/app/_components/get-new-images";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { ImageMetaData } from "~/lib/types";
 
@@ -11,22 +10,19 @@ const initialImages: ImageMetaData[] = [];
 const NUMBER_OF_IMAGES_TO_FETCH = 15;
 
 export function Images() {
-  const [myImages, setMyImages] = useState<ImageMetaData[]>(initialImages);
-  const [isPending, startTransition] = useTransition();
+  const [images, setImages] = useState<ImageMetaData[]>(initialImages);
   const [offset, setOffset] = useState(0);
   const { ref, inView } = useInView();
 
-  function loadMoreImages() {
-    startTransition(async () => {
-      const newImages = await getNewImages(NUMBER_OF_IMAGES_TO_FETCH, offset);
-      setMyImages([...myImages, ...newImages]);
-      setOffset(offset + NUMBER_OF_IMAGES_TO_FETCH);
-    });
-  }
-
   useEffect(() => {
     if (inView) {
-      loadMoreImages();
+      fetch(`/api/images?limit=${NUMBER_OF_IMAGES_TO_FETCH}&offset=${offset}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const moreImages = JSON.parse(data.imagesAsJson);
+          setImages([...images, ...moreImages]);
+          setOffset(offset + NUMBER_OF_IMAGES_TO_FETCH);
+        });
     }
   }, [inView]);
 
@@ -34,7 +30,7 @@ export function Images() {
     <div>
       <div className="flex justify-center">
         <div className="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
-          {myImages.map((image) => (
+          {images.map((image) => (
             <div
               className="aspect-square overflow-hidden rounded-md"
               key={image.id}
