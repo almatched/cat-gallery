@@ -29,3 +29,4 @@
 - [ ] "Selecting" images on the gallery page (Zustand recommended by Theo)
 - [ ] Customize error boundary to look nice
 - [ ] Optimize images as much as possible
+- [ ] Add shadow database (database with test data) to test not test on production data
