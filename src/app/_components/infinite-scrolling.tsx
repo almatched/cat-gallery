@@ -21,13 +21,5 @@ export function InfiniteScrolling() {
     }
   }, [inView]);
 
-  useEffect(() => {
-    const currentPage = 1;
-
-    const params = new URLSearchParams(searchParams);
-    params.set("page", currentPage.toString());
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
-  }, []);
-
   return <div ref={ref}></div>;
 }
