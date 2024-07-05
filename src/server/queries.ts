@@ -22,8 +22,6 @@ export async function getImages(page: number) {
   const pageAsNumber = Number(page);
   const limit = 15 * pageAsNumber;
 
-  console.log("limit, ", limit);
-
   const images = await db.query.images.findMany({
     orderBy: (model, { desc }) => desc(model.id),
     limit: limit,

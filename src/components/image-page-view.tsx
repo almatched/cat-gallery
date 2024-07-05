@@ -1,7 +1,7 @@
 import { clerkClient } from "@clerk/nextjs/server";
-import { deleteImage, getImage } from "~/server/queries";
+import { getImage } from "~/server/queries";
 import { Button } from "~/components/ui/button";
-import { revalidatePath } from "next/cache";
+import { deleteImageAction } from "~/lib/actions";
 
 export default async function ImagePageView({ id, page }: { id: string, page: number }) {
   const idAsNumber = Number(id);
@@ -10,14 +10,7 @@ export default async function ImagePageView({ id, page }: { id: string, page: nu
 
   const image = await getImage(idAsNumber);
 
-  async function handleDeleteImage(page: number) {
-    "use server";
-
-    await deleteImage(idAsNumber, image.url, page);
-    revalidatePath("/");
-  }
-
-  const handleDeleteImageWithPage = handleDeleteImage.bind(null, page);
+  const deleteImageActionWithPage = deleteImageAction.bind(null, idAsNumber, image.url, page);
 
   const uploaderInfo = await clerkClient.users.getUser(image.userId);
   return (
@@ -45,7 +38,7 @@ export default async function ImagePageView({ id, page }: { id: string, page: nu
 
         <div className="p-2">
           <form
-            action={handleDeleteImageWithPage}
+            action={deleteImageActionWithPage}
           >
             <Button type="submit" variant="destructive">
               Delete
