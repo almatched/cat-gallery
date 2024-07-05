@@ -1,7 +1,15 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Images } from "~/app/_components/images";
+import { InfiniteScrolling } from "~/app/_components/infinite-scrolling";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default function HomePage({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}) {
+  const page = Number(searchParams?.page) || 1;
   return (
     <div>
       <SignedOut>
@@ -10,7 +18,10 @@ export default function HomePage() {
         </div>
       </SignedOut>
       <SignedIn>
-        <Images />
+        <div>
+          <Images page={page} />
+          <InfiniteScrolling />
+        </div>
       </SignedIn>
     </div>
   );

@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
 import { utapi } from "./uploadthing";
 
-export async function getMyImages(limit: number, offset: number) {
+export async function getImages(page: number) {
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -19,10 +19,14 @@ export async function getMyImages(limit: number, offset: number) {
     throw new Error("User Does Not Have Read Permissions");
   }
 
+  const pageAsNumber = Number(page);
+  const limit = 15 * pageAsNumber;
+
+  console.log("limit, ", limit);
+
   const images = await db.query.images.findMany({
     orderBy: (model, { desc }) => desc(model.id),
     limit: limit,
-    offset: offset,
   });
 
   return images;
@@ -48,7 +52,7 @@ export async function getImage(id: number) {
   return image;
 }
 
-export async function deleteImage(id: number, url: string) {
+export async function deleteImage(id: number, url: string, page: number) {
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -75,5 +79,5 @@ export async function deleteImage(id: number, url: string) {
     },
   });
 
-  redirect("/");
+  redirect(`/?page=${page}`);
 }
