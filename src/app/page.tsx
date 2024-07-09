@@ -1,4 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from "next/navigation";
 import { Images } from "~/app/_components/images";
 import { InfiniteScrolling } from "~/app/_components/infinite-scrolling";
 
@@ -9,6 +11,21 @@ export default function HomePage({
 }: {
   searchParams?: { page?: string };
 }) {
+  const { userId }: { userId: string | null } = auth();
+  const isPage = !!(searchParams?.page);
+  console.log(isPage);
+
+  if (!userId) {
+    if (isPage) {
+      redirect("/");
+    }
+  }
+  if (userId) {
+    if (!isPage) {
+      redirect("/?page=1");
+    }
+  }
+
   const page = Number(searchParams?.page);
   return (
     <div>
