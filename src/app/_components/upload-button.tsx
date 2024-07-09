@@ -79,6 +79,7 @@ export function UploadButton() {
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
       posthog.capture("upload_begin");
+      console.log("upload start")
       toast(
         <div className="flex items-center gap-2">
           <LoadingSpinnerSVG />
@@ -92,7 +93,8 @@ export function UploadButton() {
     },
     onUploadError(error) {
       posthog.capture("upload_error", { error });
-      toast.dismiss("upload-beig");
+      console.log("error, ", error)
+      toast.dismiss("upload-begin");
       toast.error("Upload failed");
     },
     onClientUploadComplete() {
