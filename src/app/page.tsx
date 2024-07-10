@@ -1,8 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { auth } from '@clerk/nextjs/server';
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Images } from "~/app/_components/images";
-import { InfiniteScrolling } from "~/app/_components/infinite-scrolling";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +11,7 @@ export default function HomePage({
   searchParams?: { page?: string };
 }) {
   const { userId }: { userId: string | null } = auth();
-  const isPage = !!(searchParams?.page);
+  const isPage = !!searchParams?.page;
 
   if (!userId) {
     if (isPage) {
@@ -24,7 +23,7 @@ export default function HomePage({
       redirect("/?page=1");
     }
   }
-  
+
   const page = Number(searchParams?.page);
   return (
     <div>
@@ -36,7 +35,6 @@ export default function HomePage({
       <SignedIn>
         <div>
           <Images page={page} />
-          <InfiniteScrolling />
         </div>
       </SignedIn>
     </div>

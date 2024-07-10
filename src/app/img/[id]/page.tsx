@@ -10,5 +10,6 @@ export default function ImagePage({
   };
 }) {
   const page = Number(searchParams?.page) || 1;
+
   return <ImagePageView id={photoId} page={page} />;
 }

@@ -9,9 +9,10 @@ export default function ImagePage({
   params: { id: string };
   searchParams?: {
     page?: string;
-  },
+  };
 }) {
   const page = Number(searchParams?.page) || 1;
+
   return (
     <Modal>
       <Suspense>
