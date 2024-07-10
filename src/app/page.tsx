@@ -13,7 +13,6 @@ export default function HomePage({
 }) {
   const { userId }: { userId: string | null } = auth();
   const isPage = !!(searchParams?.page);
-  console.log(isPage);
 
   if (!userId) {
     if (isPage) {
@@ -25,7 +24,7 @@ export default function HomePage({
       redirect("/?page=1");
     }
   }
-
+  
   const page = Number(searchParams?.page);
   return (
     <div>
