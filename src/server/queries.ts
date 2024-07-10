@@ -4,7 +4,7 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
 import { images } from "./db/schema";
 import { eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
 import { utapi } from "./uploadthing";
 
@@ -45,7 +45,7 @@ export async function getImage(id: number) {
     where: (model, { eq }) => eq(model.id, id),
   });
 
-  if (!image) throw new Error("Image not found");
+  if (!image) notFound();
 
   return image;
 }
